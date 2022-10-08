@@ -1,6 +1,7 @@
 {
   "conventionalCommits.scopes": [
     "main.tsx",
-    "Router.tsx"
+    "Router.tsx",
+    "App.tsx"
   ]
 }
