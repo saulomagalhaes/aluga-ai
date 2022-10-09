@@ -26,7 +26,7 @@ Signature.init(
   },
   {
     sequelize: db,
-    modelName: 'products',
+    modelName: 'signatures',
     timestamps: true,
     underscored: true,
   }

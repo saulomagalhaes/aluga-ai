@@ -8,7 +8,7 @@
     "build": "tsc",
     "dev": "tsnd --respawn --transpile-only src/server.ts",
     "lint": "eslint src --ext .ts, .tsx",
-    "db:reset": "npm run build && npx sequelize-cli db:drop && npx sequelize-cli db:create"
+    "db:reset": "npm run build && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
   },
   "keywords": [],
   "author": "",
