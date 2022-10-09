@@ -1,9 +1,9 @@
 {
   "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
-    "target": "es2016",                                 
+    "target": "es2016",
     "module": "commonjs",
-    "rootDir": "./",
+    "rootDir": "./src",
     "outDir": "./dist",
     "preserveConstEnums": true,
     "esModuleInterop": true,
@@ -11,6 +11,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include":["src/**/*"], 
-  "exclude": ["node_modules", "**/*.spec.ts"] 
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

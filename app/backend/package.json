@@ -7,7 +7,8 @@
     "start": "npm run build && node ./dist/server.js",
     "build": "tsc",
     "dev": "tsnd --respawn --transpile-only src/server.ts",
-    "lint": "eslint src --ext .ts, .tsx --fix"
+    "lint": "eslint src --ext .ts, .tsx",
+    "db:reset": "npm run build && npx sequelize-cli db:drop && npx sequelize-cli db:create"
   },
   "keywords": [],
   "author": "",
