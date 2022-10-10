@@ -1,4 +1,5 @@
 import Joi from 'joi'
+import { IDataSignature } from '../interfaces/ISignatureService'
 import { ILogin, IRegister } from '../interfaces/IUserService'
 
 class JoiService {
@@ -21,6 +22,17 @@ class JoiService {
     })
     const data = await schema.validateAsync(userData)
     return data
+  }
+
+  static validateDataSignature = async (
+    data: IDataSignature
+  ): Promise<void> => {
+    const schema = Joi.object({
+      userId: Joi.number().required(),
+      productId: Joi.number().required(),
+      file: Joi.string().required(),
+    })
+    await schema.validateAsync(data)
   }
 }
 
