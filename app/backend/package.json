@@ -19,6 +19,7 @@
     "@types/express": "^4.17.14",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/md5": "^2.3.2",
+    "@types/multer": "^1.4.7",
     "@types/node": "^18.8.3",
     "@types/sequelize": "^4.28.14",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
@@ -42,6 +43,7 @@
     "joi": "^17.6.2",
     "jsonwebtoken": "^8.5.1",
     "md5": "^2.3.0",
+    "multer": "^1.4.5-lts.1",
     "mysql2": "^2.3.3",
     "sequelize": "^6.24.0",
     "swagger": "^0.7.5"
