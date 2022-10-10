@@ -1,4 +1,4 @@
-import { DECIMAL, INTEGER, Model, STRING } from 'sequelize'
+import { INTEGER, Model } from 'sequelize'
 import db from '.'
 
 class Signature extends Model {
@@ -16,11 +16,11 @@ Signature.init(
       autoIncrement: true,
     },
     userId: {
-      type: STRING,
+      type: INTEGER,
       allowNull: false,
     },
     productId: {
-      type: DECIMAL(10, 2),
+      type: INTEGER,
       allowNull: false,
     },
   },

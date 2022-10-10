@@ -1,6 +1,6 @@
 import { INTEGER, Model, STRING } from 'sequelize'
 import db from '.'
-
+import Signature from './Signature'
 class User extends Model {
   id!: number
   name!: string
@@ -35,5 +35,8 @@ User.init(
     timestamps: false,
   }
 )
+
+User.hasMany(Signature, { foreignKey: 'user_id', as: 'signatures' })
+Signature.belongsTo(User, { foreignKey: 'user_id', as: 'user' })
 
 export default User

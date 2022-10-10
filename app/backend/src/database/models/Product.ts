@@ -1,5 +1,6 @@
 import { DECIMAL, INTEGER, Model, STRING } from 'sequelize'
 import db from '.'
+import Signature from './Signature'
 
 class Product extends Model {
   id!: number
@@ -30,5 +31,8 @@ Product.init(
     timestamps: false,
   }
 )
+
+Product.hasMany(Signature, { foreignKey: 'product_id', as: 'signatures' })
+Signature.belongsTo(Product, { foreignKey: 'product_id', as: 'product' })
 
 export default Product
