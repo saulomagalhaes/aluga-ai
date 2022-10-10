@@ -6,6 +6,7 @@ class Product extends Model {
   id!: number
   name!: string
   price!: number
+  img!: string
 }
 
 Product.init(
@@ -22,6 +23,10 @@ Product.init(
     },
     price: {
       type: DECIMAL(10, 2),
+      allowNull: false,
+    },
+    img: {
+      type: STRING,
       allowNull: false,
     },
   },
