@@ -6,17 +6,17 @@ module.exports = {
         {
           name: 'Saulo Alves',
           email: 'saulo@hotmail.com',
-          password: '123456789',
+          password: 'e10adc3949ba59abbe56e057f20f883e',
         },
         {
           name: 'Iran Ferreira',
           email: 'iran@hotmail.com',
-          password: '123456789',
+          password: 'e10adc3949ba59abbe56e057f20f883e',
         },
         {
           name: 'Silvio Santos',
           email: 'silvio@hotmail.com',
-          password: '123456789',
+          password: 'e10adc3949ba59abbe56e057f20f883e',
         },
       ],
       {}
