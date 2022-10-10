@@ -27,6 +27,21 @@ module.exports = {
         },
         onDelete: 'CASCADE',
       },
+      imgUrl: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        field: 'img_url',
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        field: 'created_at',
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        field: 'updated_at',
+      },
     })
   },
 
