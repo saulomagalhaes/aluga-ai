@@ -1,10 +1,13 @@
-import { INTEGER, Model } from 'sequelize'
+import { INTEGER, Model, STRING } from 'sequelize'
 import db from '.'
 
 class Signature extends Model {
   id!: number
   userId!: string
   productId!: number
+  createdAt!: Date
+  updatedAt!: Date
+  imgUrl!: string
 }
 
 Signature.init(
@@ -21,6 +24,10 @@ Signature.init(
     },
     productId: {
       type: INTEGER,
+      allowNull: false,
+    },
+    imgUrl: {
+      type: STRING,
       allowNull: false,
     },
   },
