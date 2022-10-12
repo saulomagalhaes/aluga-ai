@@ -7,7 +7,7 @@ class SignatureService implements ISignatureService {
   public signatures = async (userId: number): Promise<Signature[] | null> => {
     const signatures = await Signature.findAll({
       where: { userId },
-      attributes: ['createdAt'],
+      attributes: ['id', 'createdAt'],
       include: [
         {
           model: Product,
@@ -16,9 +16,6 @@ class SignatureService implements ISignatureService {
         },
       ],
     })
-    if (!signatures) {
-      throw new ThrowError('NotFound', 'No signatures found')
-    }
     return signatures
   }
 
