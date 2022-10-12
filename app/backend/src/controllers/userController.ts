@@ -16,6 +16,12 @@ class UserController {
     const token = await this._userService.register(req.body)
     res.status(201).json({ token })
   }
+
+  public authorization = async (req: Request, res: Response): Promise<void> => {
+    const token = req.headers.authorization || ''
+    const id = await this._userService.authorization(token)
+    res.status(200).json({ id })
+  }
 }
 
 export { UserController }
