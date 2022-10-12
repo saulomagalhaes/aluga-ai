@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ContainerRegister } from './styles'
 
 const URL = import.meta.env.VITE_HOSTNAME
@@ -10,6 +11,7 @@ export function Register() {
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
   const [error, setError] = useState('')
+  const navigate = useNavigate()
 
   const saveUser = (value: string) =>
     localStorage.setItem('token', JSON.stringify(value))
@@ -24,6 +26,7 @@ export function Register() {
       })
       .then((response) => {
         saveUser(response.data.token)
+        navigate('/user')
       })
       .catch((error) => {
         setError(error.response.data.message)
