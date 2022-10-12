@@ -52,6 +52,15 @@ class UserService implements IUserService {
 
     return JwtService.sign(payload, process.env.JWT_SECRET || '', options)
   }
+
+  public authorization = async (token: string): Promise<string> => {
+    const id = JwtService.verify(token, process.env.JWT_SECRET || '')
+    const user: User | null = await User.findByPk(id)
+    if (!user) {
+      throw new ThrowError('UnauthorizedError', 'Unauthorized')
+    }
+    return id
+  }
 }
 
 export { UserService }
