@@ -5,7 +5,9 @@ import { HeaderContainer } from './styles'
 export function Header() {
   return (
     <HeaderContainer>
-      <img src={logoAllugator} alt="" />
+      <NavLink to="/">
+        <img src={logoAllugator} alt="" />
+      </NavLink>
       <div>
         <NavLink to="/login">
           <button>LOGIN</button>
