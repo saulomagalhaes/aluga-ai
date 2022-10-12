@@ -1,17 +1,28 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { IProductsInterface } from '../../../../interfaces/IProductsInterface'
 import { ProductContainer } from './styles'
 
 const URL = import.meta.env.VITE_HOSTNAME
 const PORT = import.meta.env.VITE_BACKEND_PORT
 
-export function Product() {
+export function Product(props: { logged: boolean }) {
   const [product, setProduct] = useState<IProductsInterface>(
     {} as IProductsInterface
   )
   const { id } = useParams()
+  const navigate = useNavigate()
+
+  const saveProductInLocalStorage = () => {
+    if (!props.logged) {
+      alert('Você precisa estar logado para adicionar um produto ao carrinho')
+      return navigate('/login')
+    }
+    const newStorage = [product]
+    localStorage.setItem('product', JSON.stringify(newStorage))
+    navigate('/checkout')
+  }
 
   useEffect(() => {
     const url = `http://${URL}:${PORT}/product/${id}`
@@ -35,7 +46,7 @@ export function Product() {
         <p>Parcelamento em até 12x</p>
         <p>Frete grátis para todo o Brasil</p>
         <p>Valor: R${product.price}</p>
-        <button>Assinar</button>
+        <button onClick={saveProductInLocalStorage}>Assinar</button>
       </div>
     </ProductContainer>
   )
