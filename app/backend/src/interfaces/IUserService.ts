@@ -10,4 +10,5 @@ export interface IRegister extends ILogin {
 export interface IUserService {
   login({ email, password }: ILogin): Promise<string>
   register({ name, email, password }: IRegister): Promise<string>
+  authorization(token: string): Promise<string>
 }
