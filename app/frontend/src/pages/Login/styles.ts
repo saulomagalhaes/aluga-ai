@@ -10,7 +10,7 @@ export const ContainerLogin = styled.div`
   form {
     display: flex;
     flex-direction: column;
-    background: ${(props) => props.theme['gray-100']};
+    background: ${(props) => props.theme['gray-300']};
     padding: 8rem 6rem;
     border-radius: 1rem;
     box-shadow: 0 0 1rem ${(props) => props.theme['gray-300']};
