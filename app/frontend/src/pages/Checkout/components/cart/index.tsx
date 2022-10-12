@@ -27,7 +27,7 @@ export function Cart(props: { userId: string }) {
     axios
       .post(url, formData, config)
       .then((response) => {
-        console.log(response)
+        console.error(response)
       })
       .catch((_error) => {
         alert('Você não enviou o documento solicitado')

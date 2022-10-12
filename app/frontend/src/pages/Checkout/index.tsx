@@ -27,7 +27,7 @@ export function Checkout() {
         setUserId(response.data.id)
       })
       .catch((error) => {
-        console.log(error)
+        console.error(error)
       })
   }, [])
   return (
