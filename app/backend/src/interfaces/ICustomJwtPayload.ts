@@ -2,7 +2,7 @@ import { JwtPayload } from 'jsonwebtoken'
 
 interface ICustomJwtPayload extends JwtPayload {
   data: {
-    role: string
+    id: string
   }
 }
 
