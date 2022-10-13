@@ -12,7 +12,7 @@ class SignatureService implements ISignatureService {
         {
           model: Product,
           as: 'product',
-          attributes: ['name', 'price'],
+          attributes: ['name', 'price', 'img'],
         },
       ],
     })
