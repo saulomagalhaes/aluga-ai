@@ -1,32 +1,72 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { IProductsInterface } from '../../interfaces/IProductsInterface'
+import {
+  fetchAllProducts,
+  fetchOrderByAlphabetic,
+  fetchOrderByPrice,
+  fetchProductByName,
+} from '../../services/axios'
 import { ProductsContainer, ProductsContent } from './styles'
-
-const URL = import.meta.env.VITE_HOSTNAME
-const PORT = import.meta.env.VITE_BACKEND_PORT
 
 export function Products() {
   const [products, setProducts] = useState<IProductsInterface[]>([])
-  // const [name, setName] = useState('')
+  const [name, setName] = useState('')
+  const [orderAlphabetic, setOrderAlphabetic] = useState('ASC')
+  const [orderPrice, setOrderPrice] = useState('ASC')
+
+  const handleAllProducts = async () => {
+    const products = await fetchAllProducts()
+    setProducts(products)
+  }
 
   useEffect(() => {
-    const url = `http://${URL}:${PORT}/`
-    axios
-      .get<IProductsInterface[]>(url)
-      .then((response) => {
-        setProducts(response.data)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+    handleAllProducts()
   }, [])
+
+  const handleSearchName = async () => {
+    if (name === '') {
+      const products = await fetchAllProducts()
+      setProducts(products)
+    }
+    const products = await fetchProductByName(name)
+    setProducts(products)
+  }
+
+  const handleOrderPrice = async () => {
+    const products = await fetchOrderByPrice(orderPrice)
+    setProducts(products)
+    if (orderPrice === 'ASC') {
+      setOrderPrice('DESC')
+    } else {
+      setOrderPrice('ASC')
+    }
+  }
+  const handleOrderAlphabetic = async () => {
+    const products = await fetchOrderByAlphabetic(orderAlphabetic)
+    setProducts(products)
+    if (orderAlphabetic === 'ASC') {
+      setOrderAlphabetic('DESC')
+    } else {
+      setOrderAlphabetic('ASC')
+    }
+  }
 
   return (
     <ProductsContainer>
       <h1>Estes são os produtos disponíveis para assinatura</h1>
-      {/* <input type="text" onChange={(e) => setName(e.target.value)} /> */}
+      <div>
+        <input
+          type="text"
+          placeholder="Fazer a busca com este campo vazio retorna todos os produtos"
+          onChange={(e) => setName(e.target.value)}
+        />
+        <button onClick={handleSearchName}>Filtar por nome</button>
+        <button onClick={handleOrderPrice}>Ordenar por valor</button>
+        <button onClick={handleOrderAlphabetic}>
+          Ordenar por ordem alfabética
+        </button>
+      </div>
       <ProductsContent>
         {products.map((product) => (
           <div key={product.id}>
