@@ -4,5 +4,6 @@ export interface ISignature {
   product: {
     name: string
     price: number
+    img: string
   }
 }
