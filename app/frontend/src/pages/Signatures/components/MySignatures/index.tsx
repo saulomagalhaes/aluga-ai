@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ISignature } from '../../../../interfaces/ISignature'
-
+import { Card, ContainerMySignatures } from './styles'
 const URL = import.meta.env.VITE_HOSTNAME
 const PORT = import.meta.env.VITE_BACKEND_PORT
 
@@ -45,17 +45,20 @@ export function MySignatures() {
   }, [])
 
   return (
-    <>
+    <ContainerMySignatures>
       {signatures.length === 0 ? (
         <h1>Sem assinaturas</h1>
       ) : (
         signatures.map((signature) => (
-          <div key={signature.id}>
+          <Card key={signature.id}>
+            <img src={signature.product.img} alt="" />
             <h2>{signature.product.name}</h2>
-            <p>R$:{signature.product.price}</p>
-          </div>
+            <p>
+              Assinado dia:{new Date(signature.createdAt).toLocaleDateString()}
+            </p>
+          </Card>
         ))
       )}
-    </>
+    </ContainerMySignatures>
   )
 }
