@@ -23,6 +23,16 @@ module.exports = {
           price: 5500,
           img: 'http://localhost:3001/images/arquivo_1665431393295.png',
         },
+        {
+          name: 'Motorola Edge 30',
+          price: 1500,
+          img: 'http://localhost:3001/images/motorola-edge-30.jpg',
+        },
+        {
+          name: 'Samsung Galaxy S22',
+          price: 3500,
+          img: 'http://localhost:3001/images/galaxys22.png',
+        },
       ],
       {}
     )
