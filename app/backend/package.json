@@ -4,7 +4,7 @@
   "description": "",
   "main": "./dist/server",
   "scripts": {
-    "start": "npm run build && node ./dist/server.js",
+    "start": "npm run db:reset && node .",
     "build": "tsc",
     "dev": "tsnd --respawn --transpile-only src/server.ts",
     "lint": "eslint . --ext .ts",
