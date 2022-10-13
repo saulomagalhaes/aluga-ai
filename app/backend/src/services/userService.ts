@@ -27,7 +27,7 @@ class UserService implements IUserService {
       expiresIn: '7d',
     }
 
-    return JwtService.sign(payload, process.env.JWT_SECRET || '', options)
+    return JwtService.sign(payload, process.env.JWT_SECRET || 'secret', options)
   }
 
   public register = async ({
@@ -50,7 +50,7 @@ class UserService implements IUserService {
       expiresIn: '7d',
     }
 
-    return JwtService.sign(payload, process.env.JWT_SECRET || '', options)
+    return JwtService.sign(payload, process.env.JWT_SECRET || 'secret', options)
   }
 
   public authorization = async (token: string): Promise<string> => {
