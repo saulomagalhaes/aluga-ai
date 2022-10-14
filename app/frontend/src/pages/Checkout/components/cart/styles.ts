@@ -11,7 +11,7 @@ export const Product = styled.div`
   align-items: center;
   justify-content: center;
   background: ${(props) => props.theme['gray-100']};
-  padding: 3rem;
+  padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 0 1rem ${(props) => props.theme['gray-300']};
 
@@ -20,6 +20,16 @@ export const Product = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    h1 {
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      color: ${(props) => props.theme['green-300']};
+    }
   }
 
   button {
@@ -28,7 +38,7 @@ export const Product = styled.div`
     font-weight: 600;
     background: ${(props) => props.theme['green-300']};
     border: 0;
-    padding: 0.6rem 1.5rem;
+    padding: 0.8rem 3rem;
     border-radius: 0.25rem;
     margin-top: 1rem;
   }
