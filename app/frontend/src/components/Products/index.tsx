@@ -7,7 +7,7 @@ import {
   fetchOrderByPrice,
   fetchProductByName,
 } from '../../services/axios'
-import { ProductsContainer, ProductsContent } from './styles'
+import { Filter, ProductsContainer, ProductsContent } from './styles'
 
 export function Products() {
   const [products, setProducts] = useState<IProductsInterface[]>([])
@@ -55,29 +55,37 @@ export function Products() {
   return (
     <ProductsContainer>
       <h1>Estes são os produtos disponíveis para assinatura</h1>
-      <div>
-        <input
-          type="text"
-          placeholder="Fazer a busca com este campo vazio retorna todos os produtos"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <button onClick={handleSearchName}>Filtar por nome</button>
-        <button onClick={handleOrderPrice}>Ordenar por valor</button>
-        <button onClick={handleOrderAlphabetic}>
-          Ordenar por ordem alfabética
-        </button>
-      </div>
+      <Filter>
+        <div>
+          <input
+            type="text"
+            placeholder="Digite o nome do produto ou deixe em branco pra buscar todos"
+            onChange={(e) => setName(e.target.value)}
+          />
+          <button onClick={handleSearchName}>Filtar por nome</button>
+        </div>
+        <div>
+          <button onClick={handleOrderPrice}>Ordenar por valor</button>
+          <button onClick={handleOrderAlphabetic}>
+            Ordenar por ordem alfabética
+          </button>
+        </div>
+      </Filter>
       <ProductsContent>
-        {products.map((product) => (
-          <div key={product.id}>
-            <img src={product.img}></img>
-            <h2>{product.name}</h2>
-            <p>R$:{product.price}</p>
-            <NavLink to={`/product/${product.id}`}>
-              <button>VER PRODUTO</button>
-            </NavLink>
-          </div>
-        ))}
+        {products.length === 0 ? (
+          <h1>Nenhum Produto encontrado</h1>
+        ) : (
+          products.map((product) => (
+            <div key={product.id}>
+              <img src={product.img}></img>
+              <h2>{product.name}</h2>
+              <p>R$ {product.price.toFixed(2).replace('.', ',')}</p>
+              <NavLink to={`/product/${product.id}`}>
+                <button>VER PRODUTO</button>
+              </NavLink>
+            </div>
+          ))
+        )}
       </ProductsContent>
     </ProductsContainer>
   )
