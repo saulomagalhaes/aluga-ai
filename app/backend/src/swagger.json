@@ -1,0 +1,366 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Allugator",
+    "version": "1.0",
+    "description": "The API manages a smartphone rental system and contains routes to list all products, apply search filters, search for a customer's signatures, complete a device subscription, log in, register a new user, etc."
+  },
+  "servers": [{ "url": "http://localhost:3001" }],
+  "paths": {
+    "/login": {
+      "post": {
+        "description": "Login",
+        "tags": ["User"],
+        "summary": "Login",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "login": { "$ref": "#/components/examples/Login" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "description": "Register",
+        "tags": ["User"],
+        "summary": "Register",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Register"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "register": { "$ref": "#/components/examples/Register" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/authorization": {
+      "get": {
+        "description": "Check authorization",
+        "tags": ["User"],
+        "summary": "Check authorization",
+        "security": [{ "JWT": [] }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "authorization": {
+                    "$ref": "#/components/examples/Authorization"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product/{id}": {
+      "get": {
+        "description": "Get Product By Id",
+        "tags": ["Product"],
+        "summary": "Get Product By Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "product": {
+                    "$ref": "#/components/examples/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signature/{id}": {
+      "get": {
+        "description": "Get Signature By Id",
+        "tags": ["Signature"],
+        "summary": "Get Signature By Id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "signatures": {
+                    "$ref": "#/components/examples/Signatures"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signature/checkout": {
+      "post": {
+        "description": "Checkout",
+        "tags": ["Signature"],
+        "summary": "Checkout",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Checkout"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "description": "Get all products",
+        "tags": ["Product"],
+        "summary": "Get all products",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "products": { "$ref": "#/components/examples/Products" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product": {
+      "get": {
+        "description": "Through this route it is possible to make 3 types of filters. By name: It is necessary to pass the name of a product By price: Must be passed ASC or DESC In alphabetical order: Must be passed ASC or DESC",
+        "tags": ["Product"],
+        "summary": "Filter products by name, price and alphabet order",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Iphone"
+            }
+          },
+          {
+            "name": "price",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "DESC or ASC"
+            }
+          },
+          {
+            "name": "alphabet",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "DESC or ASC"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "orders": { "$ref": "#/components/examples/Authorization" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "saulo@hotmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "123456"
+          }
+        }
+      },
+      "Register": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Saulo Alves"
+          },
+          "email": {
+            "type": "string",
+            "example": "sauloalves@hotmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "123456"
+          }
+        }
+      },
+      "Checkout": {
+        "type": "object",
+        "properties": {
+          "arquivo": {
+            "type": "string",
+            "format": "binary",
+            "example": "file.pdf"
+          },
+          "userId": {
+            "type": "string",
+            "example": "1"
+          },
+          "productId": {
+            "type": "string",
+            "example": "2"
+          }
+        }
+      }
+    },
+    "examples": {
+      "Login": {
+        "value": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJuYW1lIjoiU2F1bG8gQWx2ZXMiLCJlbWFpbCI6InNhdWxvQGhvdG1haWwuY29tIn0sImlhdCI6MTY2NTU5MTcyMywiZXhwIjoxNjY2MTk2NTIzfQ.zJDUG57rTo99JuCsL_Q_SA-Q3c4mJNVLrPy9aIl1nV8"
+        }
+      },
+      "Register": {
+        "value": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo0LCJuYW1lIjoic2F1bG9zIiwiZW1haWwiOiJzYXVsb3Nzc0Bob3RtYWlsLmNvbSJ9LCJpYXQiOjE2NjU3NTc3NzksImV4cCI6MTY2NjM2MjU3OX0.VTw4zJRcAfP0nBtQAugjRZxLpxGGegFIfQOVnmMigk8"
+        }
+      },
+      "Authorization": {
+        "value": {
+          "id": 1
+        }
+      },
+      "Product": {
+        "value": {
+          "id": 1,
+          "name": "Iphone 12",
+          "price": 2500,
+          "img": "http://localhost:3001/images/arquivo_1665431374708.png"
+        }
+      },
+      "Products": {
+        "value": [
+          {
+            "id": 1,
+            "name": "Iphone 12",
+            "price": 2500,
+            "img": "http://localhost:3001/images/arquivo_1665431374708.png"
+          },
+          {
+            "id": 2,
+            "name": "Iphone 13",
+            "price": 3500,
+            "img": "http://localhost:3001/images/arquivo_1665431380967.png"
+          }
+        ]
+      },
+      "Signatures": {
+        "value": [
+          {
+            "id": 1,
+            "createdAt": "2022-10-13T17:55:37.000Z",
+            "product": {
+              "name": "Iphone 13 Pro Max",
+              "price": 5500,
+              "img": "http://localhost:3001/images/arquivo_1665431393295.png"
+            }
+          },
+          {
+            "id": 4,
+            "createdAt": "2022-10-13T23:48:35.000Z",
+            "product": {
+              "name": "Iphone 13 Pro Max",
+              "price": 5500,
+              "img": "http://localhost:3001/images/arquivo_1665431393295.png"
+            }
+          }
+        ]
+      }
+    },
+    "securitySchemes": {
+      "JWT": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  }
+}
