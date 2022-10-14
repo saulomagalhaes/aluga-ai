@@ -23,7 +23,7 @@ class SignatureController {
       data.productId,
       data.file
     )
-    res.status(200).json(signature)
+    res.status(201).json(signature)
   }
 }
 
