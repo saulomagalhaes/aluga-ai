@@ -9,11 +9,11 @@ const PORT = import.meta.env.VITE_BACKEND_PORT
 
 export function Cart(props: { userId: string }) {
   const storage = JSON.parse(localStorage.getItem('product') || '[]')
-  const [file, setFile] = useState<File>({} as File)
+  const [file, setFile] = useState('')
   const navigate = useNavigate()
 
-  const handleFile = (file: File) => {
-    setFile(file)
+  const handleFile = (e: any) => {
+    setFile(e.target.files[0])
   }
 
   const checkout = () => {
@@ -50,15 +50,7 @@ export function Cart(props: { userId: string }) {
           </div>
         ))}
         <h3>Precisamos que você envie algum documento</h3>
-        <input
-          type="file"
-          name="arquivo"
-          id="arquivo"
-          onChange={(e) => {
-            if (!e.target.files) return
-            handleFile(e.target.files[0])
-          }}
-        />
+        <input type="file" name="arquivo" id="arquivo" onChange={handleFile} />
         <button onClick={checkout}>Assinar</button>
       </Product>
     </ContainerCart>
