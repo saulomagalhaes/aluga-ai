@@ -11,9 +11,14 @@ export const ContainerRegister = styled.div`
     display: flex;
     flex-direction: column;
     background: ${(props) => props.theme['gray-300']};
-    padding: 8rem 6rem;
+    padding: 6rem 6rem;
     border-radius: 1rem;
     box-shadow: 0 0 1rem ${(props) => props.theme['gray-300']};
+
+    img {
+      width: 200px;
+      margin-bottom: 2rem;
+    }
 
     label {
       margin-top: 1rem;

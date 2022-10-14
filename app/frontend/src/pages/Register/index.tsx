@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import logoAllugator from '../../assets/logotype.png'
 import { ContainerRegister } from './styles'
 
 const URL = import.meta.env.VITE_HOSTNAME
@@ -36,6 +37,7 @@ export function Register() {
   return (
     <ContainerRegister>
       <form onSubmit={handleSubmit}>
+        <img src={logoAllugator} alt="" />
         <label htmlFor="name">Nome</label>
         <input
           type="text"

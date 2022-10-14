@@ -15,6 +15,11 @@ export const ContainerLogin = styled.div`
     border-radius: 1rem;
     box-shadow: 0 0 1rem ${(props) => props.theme['gray-300']};
 
+    img {
+      width: 200px;
+      margin-bottom: 2rem;
+    }
+
     label {
       margin-top: 1rem;
       font-size: 1.2rem;
