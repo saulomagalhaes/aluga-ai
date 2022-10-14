@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const ContainerMySignatures = styled.div`
   display: flex;
   padding: 0 2rem;
+  flex-wrap: wrap;
 `
 
 export const Card = styled.div`
@@ -12,6 +13,8 @@ export const Card = styled.div`
   justify-content: center;
   background: ${(props) => props.theme['gray-100']};
   padding: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
   border-radius: 1rem;
   box-shadow: 0 0 1rem ${(props) => props.theme['gray-300']};
 `
