@@ -1,7 +1,7 @@
 
-# Desafio Técnico - Allugator 
+# Aluga Ai
 
-Projeto desenvolvido como etapa de teste técnico para a empresa Allugator.
+Projeto sem fins lucrativos e desenvolvido como etapa de teste técnico para a empresa Allugator.
 Neste projeto foi criado uma aplicação web que disponibiliza smartphones por assinatura.
 
 A aplicação está totalmente dockerizada necessitando apenas subir os containers para entrar em funcionamento.
